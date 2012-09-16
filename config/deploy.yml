@@ -5,7 +5,7 @@ application: precise
 user: nobody
 group: nobody
 
-ruby_loader: /usr/local/rvm/bin/rvm-exe
+ruby_loader: /usr/local/rvm/bin/rvm-exec
 deploy_ruby: default
 app_ruby: default
 
