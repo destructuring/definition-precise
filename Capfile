@@ -19,7 +19,7 @@ end
 
 # hooks into alpha_omega deploy
 after "deploy:localdomain", "ubuntu:overrides"
-before "deploy:update_code", "ubutu:hack"
+before "deploy:update_code", "ubuntu:hack"
 after "deploy:cook", "microwave:cook"
 
 # interesting hosts
