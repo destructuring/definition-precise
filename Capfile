@@ -3,21 +3,16 @@
 require 'alpha_omega/deploy'
 load 'config/deploy'
 
-set :releases, [ ]
-
-set(:deploy_to) { %x(pwd).chomp.sub("definitions", "vagrant") }
-
-set :root_user, ENV['LOGNAME']
-set :root_group, ENV['LOGNAME']
-
-set :use_sudo, false
-set :dir_perms, "0750"
-
 # application deploy
 namespace :ubuntu do
+  task :overrides do
+    set :skip_scm, false
+    set(:deploy_to) { %x(pwd).chomp.sub("definitions", "vagrant") }
+  end
 end
 
 # hooks into alpha_omega deploy
+after "deploy:ocaldomain", "ubuntu:overrides"
 after "deploy:cook", "microwave:cook"
 
 # interesting hosts
