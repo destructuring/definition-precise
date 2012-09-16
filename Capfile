@@ -12,7 +12,7 @@ namespace :ubuntu do
 end
 
 # hooks into alpha_omega deploy
-after "deploy:ocaldomain", "ubuntu:overrides"
+after "deploy:localdomain", "ubuntu:overrides"
 after "deploy:cook", "microwave:cook"
 
 # interesting hosts
