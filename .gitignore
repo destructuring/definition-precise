@@ -2,3 +2,7 @@
 /backup
 /.tmp
 /REVISION
+/.ssh_config
+/.ssh_known_hosts
+/.vagrant
+/vagrant.yml

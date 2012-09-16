@@ -14,6 +14,15 @@ namespace :ubuntu do
     end
   end
 
+  task :restart do
+    vagrant_up = capture("cd #{deploy_to} && { ls -d .vagrant 2>&- || true; }").chomp
+    if vagrant_up.empty?
+      run "cd #{deploy_to} && #{ruby_loader} bin/local-helper vagrant up"
+    else
+      run "cd #{deploy_to} && #{ruby_loader} bin/local-helper vagrant provision"
+    end
+  end
+
   task :hack do
     run "[[ -d #{deploy_release}/.git ]] || rm -rf #{deploy_release}/log"
     run "[[ -d #{deploy_release}/.git ]] || rmdir #{deploy_release}/cache"
@@ -25,6 +34,7 @@ end
 after "deploy:localdomain", "ubuntu:overrides"
 before "deploy:update_code", "ubuntu:hack"
 after "deploy:cook", "microwave:cook"
+after "deploy:restart", "ubuntu:restart"
 
 # interesting hosts
 Deploy self, __FILE__ do |admin, node| 
