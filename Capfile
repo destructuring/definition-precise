@@ -7,7 +7,11 @@ load 'config/deploy'
 namespace :ubuntu do
   task :overrides do
     set :skip_scm, false
-    set(:deploy_to) { %x(pwd).chomp.sub("definitions", "vagrant") }
+    if ENV["_AO_WORKAREA"]
+      set :deploy_to, ENV["_AO_WORKAREA"]
+    else
+      set(:deploy_to) { %x(pwd).chomp.sub("definitions", "vagrant") }
+    end
   end
 
   task :hack do
