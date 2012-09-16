@@ -9,10 +9,17 @@ namespace :ubuntu do
     set :skip_scm, false
     set(:deploy_to) { %x(pwd).chomp.sub("definitions", "vagrant") }
   end
+
+  task :hack do
+    run "[[ -d #{deploy_release}/.git ]] || rmdir #{deploy_release}/log"
+    run "[[ -d #{deploy_release}/.git ]] || rmdir #{deploy_release}/cache"
+    run "[[ -d #{deploy_release}/.git ]] || rmdir #{deploy_release}/service"
+  end
 end
 
 # hooks into alpha_omega deploy
 after "deploy:localdomain", "ubuntu:overrides"
+before "deploy:update_code", "ubutu:hack"
 after "deploy:cook", "microwave:cook"
 
 # interesting hosts
