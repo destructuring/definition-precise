@@ -17,7 +17,7 @@ namespace :ubuntu do
   task :restart do
     vagrant_up = capture("cd #{deploy_to} && { ls -d .vagrant 2>&- || true; }").chomp
     if vagrant_up.empty?
-      run "cd #{deploy_to} && #{ruby_loader} bin/local-helper vagrant up"
+      run "cd #{deploy_to} && #{ruby_loader} bin/local-helper vagrant up || true"
     else
       run "cd #{deploy_to} && #{ruby_loader} bin/local-helper vagrant provision"
     end
