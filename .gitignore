@@ -5,3 +5,5 @@
 /.ssh_config
 /.ssh_known_hosts
 /.vagrant
+/vendor/bundle
+/.bundle
