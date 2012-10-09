@@ -7,9 +7,10 @@ export DEBIAN_FRONTEND="noninteractive"
 
 # update packages
 aptitude update
-aptitude install -q -y linux-server linux-headers-server linux-image-server linux-headers
+aptitude install -q -y linux-virtual linux-headers-virtual linux-image-virtual linux-headers
 aptitude install -q -y ntp
-aptitude hold linux-server linux-headers-server linux-image-server linux-headers
+aptitude hold linux-virtual linux-headers-virtual linux-image-virtual linux-headers
+aptitude remove linux-server linux-headers-server linux-image-server
 aptitude clean
 
 # ssh key
