@@ -11,7 +11,7 @@ ssh_login_timeout: '10000'
 ssh_user: root
 ssh_password: vagrant
 ssh_key: ''
-ssh_host_port: '7222'
+ssh_host_port: '7223'
 ssh_guest_port: '22'
 sudo_cmd: bash '%f'
 shutdown_cmd: shutdown -P now
